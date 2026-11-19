@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Andrean Farhantama · UI/UX Designer</title>
+  <meta name="description" content="Senior UI/UX designer from Yogyakarta. SaaS, e-commerce, mobile apps and landing pages, designed in Figma and shipped with AI-assisted code." />
+  <script>
+    // Decide before first paint whether the lo-fi → hi-fi intro runs
+    // add ?intro to the URL to force it (handy for testing)
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches && (!document.hidden || /[?&]intro/.test(location.search))) {
+      document.documentElement.classList.add("is-intro");
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=12" />
+</head>
+<body>
+  <!-- Intro layer: lo-fi skeleton of the page, resolved into the real thing -->
+  <div class="lofi" aria-hidden="true">
+    <div class="lofi__layer"></div>
+    <div class="lofi__meter mono">
+      <span>Lo-fi</span>
+      <span class="lofi__bar"><i></i></span>
+      <span>Hi-fi</span>
+      <b class="lofi__pct">0%</b>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="#">
+      <span class="brand__mark">AF</span>
+      Andrean
+    </a>
+    <div class="topbar__right">
+      <span class="status mono"><i class="status__dot"></i>Open for projects</span>
+      <span class="meta mono">
+        <span class="dotted">Yogyakarta</span>, <span data-clock>--:--</span> WIB
+      </span>
+      <span class="divider"></span>
+      <a class="toplink" href="mailto:hello@example.com">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        Email
+      </a>
+      <a class="toplink" href="https://www.upwork.com/freelancers/~01982d84a18205971d" target="_blank" rel="noopener">
+        Upwork ↗
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero-band">
+      <!-- tech illustrations fill the space outside the sheet border -->
+      <aside class="side side--left" aria-hidden="true">
+        <svg id="art-a" viewBox="0 0 360 520"></svg>
+        <svg id="art-b" viewBox="0 0 360 520"></svg>
+        <svg id="art-e" viewBox="0 0 360 520"></svg>
+      </aside>
+
+      <div class="sheet">
+      <div class="ruler mono" aria-hidden="true">
+        <span>A1 · 7°47′S 110°22′E</span>
+        <span class="ruler__ticks"></span>
+        <span>rev.05</span>
+      </div>
+
+        <section class="hero">
+          <p class="hero__hello">Hi there, I'm</p>
+          <h1 class="hero__name">
+            <span class="first">Andrean</span> <span class="last">Farhantama</span>
+          </h1>
+          <p class="hero__role">Senior UI/UX designer who also ships the code</p>
+
+          <div class="hero__bio">
+            <p>
+              I help <a class="ink" href="#work">SaaS founders</a>, e-commerce brands and digital
+              agencies turn ideas into pixel-perfect products that convert. Six years of UI/UX,
+              plus an AI-assisted workflow with Claude and Cursor, means I go from a Figma
+              wireframe to a working product without the usual back-and-forth of a dev handoff.
+            </p>
+            <p>
+              Dashboards, mobile apps, landing pages, Shopify stores and the design systems that
+              hold them together. I studied Computer Science at Universitas Ahmad Dahlan and hold
+              IBM's certificate in UX Design Fundamentals.
+            </p>
+            <p>
+              Based in <span class="dotted coord" data-coord="7°47′S 110°22′E · UTC+7">Yogyakarta</span>,
+              Indonesia. You can hire me on <a class="ink" href="https://www.upwork.com/freelancers/~01982d84a18205971d" target="_blank" rel="noopener">Upwork</a>
+              or just say hi by <a class="ink" href="mailto:hello@example.com">email</a>.
+            </p>
+          </div>
+
+          <dl class="stats">
+            <div><dt class="mono">Experience</dt><dd>6+ yrs</dd></div>
+            <div><dt class="mono">Job success</dt><dd>100%</dd></div>
+            <div><dt class="mono">Upwork</dt><dd>Top Rated</dd></div>
+            <div><dt class="mono">Client rating</dt><dd>5.0 ★</dd></div>
+          </dl>
+
+          <blockquote class="quote">
+            <p>“His designs are visually stunning and really precise.”</p>
+            <cite class="mono">— Upwork client, web design contract</cite>
+          </blockquote>
+        </section>
+      </div>
+
+      <aside class="side side--right" aria-hidden="true">
+        <svg id="art-c" viewBox="0 0 360 520"></svg>
+        <svg id="art-d" viewBox="0 0 360 520"></svg>
+        <svg id="art-f" viewBox="0 0 360 520"></svg>
+      </aside>
+    </div>
+
+    <section class="work" id="work">
+      <header class="work__head">
+        <h2>Selected work</h2>
+        <p class="mono">Nine projects · 2022 — 2026</p>
+        <span class="work__count mono">09</span>
+      </header>
+      <div class="work__grid">
+        <a class="tile t1" href="https://www.upwork.com/freelancers/~01982d84a18205971d" target="_blank" rel="noopener">
+          <span class="tile__no mono">01</span>
+          <span class="tile__info">
+            <span class="tile__text"><b>Bluetooth Tracker Store</b><i class="mono">E-commerce website · Shopify</i></span>
+            <span class="tile__go">↗</span>
+          </span>
+        </a>
+        <a class="tile t2" href="https://www.upwork.com/freelancers/~01982d84a18205971d" target="_blank" rel="noopener">
+          <span class="tile__no mono">02</span>
+          <span class="tile__info">
+            <span class="tile__text"><b>Daily Meditation Class</b><i class="mono">Mobile app · iOS &amp; Android</i></span>
+            <span class="tile__go">↗</span>
+          </span>
+        </a>
+        <a class="tile t3" href="https://www.upwork.com/freelancers/~01982d84a18205971d" target="_blank" rel="noopener">
+          <span class="tile__no mono">03</span>
+          <span class="tile__info">
+            <span class="tile__text"><b>Goalkeeper Gloves</b><i class="mono">E-commerce redesign</i></span>
+            <span class="tile__go">↗</span>
+          </span>
+        </a>
+        <a class="tile t4" href="https://www.upwork.com/freelancers/~01982d84a18205971d" target="_blank" rel="noopener">
+          <span class="tile__no mono">04</span>
+          <span class="tile__info">
+            <span class="tile__text"><b>Joint Supplement for Women</b><i class="mono">PDP &amp; homepage · Shopify</i></span>
+            <span class="tile__go">↗</span>
+          </span>
+        </a>
+        <a class="tile t5" href="https://www.upwork.com/freelancers/~01982d84a18205971d" target="_blank" rel="noopener">
+          <span class="tile__no mono">05</span>
+          <span class="tile__info">
+            <span class="tile__text"><b>SaaS Company Landing</b><i class="mono">20+ pages · WordPress</i></span>
+            <span class="tile__go">↗</span>
+          </span>
+        </a>
+        <a class="tile t6" href="https://www.upwork.com/freelancers/~01982d84a18205971d" target="_blank" rel="noopener">
+          <span class="tile__no mono">06</span>
+          <span class="tile__info">
+            <span class="tile__text"><b>Hotel &amp; Travel Booking</b><i class="mono">Mobile app · Prototype</i></span>
+            <span class="tile__go">↗</span>
+          </span>
+        </a>
+        <a class="tile t7" href="https://www.upwork.com/freelancers/~01982d84a18205971d" target="_blank" rel="noopener">
+          <span class="tile__no mono">07</span>
+          <span class="tile__info">
+            <span class="tile__text"><b>Clinic Dashboard</b><i class="mono">Tablet app · Healthcare</i></span>
+            <span class="tile__go">↗</span>
+          </span>
+        </a>
+        <a class="tile t8" href="https://www.upwork.com/freelancers/~01982d84a18205971d" target="_blank" rel="noopener">
+          <span class="tile__no mono">08</span>
+          <span class="tile__info">
+            <span class="tile__text"><b>CRM Dashboard</b><i class="mono">SaaS · Internal tool</i></span>
+            <span class="tile__go">↗</span>
+          </span>
+        </a>
+        <a class="tile t9" href="https://www.upwork.com/freelancers/~01982d84a18205971d" target="_blank" rel="noopener">
+          <span class="tile__no mono">09</span>
+          <span class="tile__info">
+            <span class="tile__text"><b>HRIS Mobile App</b><i class="mono">Mobile app · Government</i></span>
+            <span class="tile__go">↗</span>
+          </span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+   <div class="foot__inner">
+    <div class="foot__top">
+      <div class="foot__meta">
+        <span class="mono">Last updated</span>
+        <b>November 2026</b>
+      </div>
+
+      <article class="ticket">
+        <header class="ticket__head mono">
+          <span>Work order № 0010</span>
+          <span>Priority: high</span>
+        </header>
+        <p class="ticket__line">Thanks for scrolling all the way down.</p>
+        <p class="ticket__line">Got a product that needs to look sharp</p>
+        <p class="ticket__line">and ship fast? Let's <a href="mailto:hello@example.com">start a brief →</a></p>
+        <footer class="ticket__foot mono">
+          <span>Signed, Andrean</span>
+          <span class="ticket__barcode"></span>
+        </footer>
+        <span class="ticket__stamp mono">Available</span>
+      </article>
+
+      <div class="foot__meta foot__meta--right">
+        <span class="mono">Right now</span>
+        <b>Yogyakarta, <span data-clock>--:--</span> WIB</b>
+      </div>
+    </div>
+
+    <nav class="keys" aria-label="Contact">
+      <a class="key" href="mailto:hello@example.com">
+        <span class="key__cap"><span class="key__hint mono">E</span>Email</span>
+      </a>
+      <a class="key key--wide" href="https://www.upwork.com/freelancers/~01982d84a18205971d" target="_blank" rel="noopener">
+        <span class="key__cap"><span class="key__hint mono">U</span>Hire on Upwork</span>
+      </a>
+      <a class="key" href="#">
+        <span class="key__cap"><span class="key__hint mono">T</span>Top ↑</span>
+      </a>
+    </nav>
+
+    <div class="foot__word" aria-hidden="true">Andrean</div>
+
+    <div class="foot__base mono">
+      <span>© 2026 Andrean Farhantama</span>
+      <span>Designed in Figma · Built with Claude &amp; Cursor</span>
+    </div>
+   </div>
+  </footer>
+
+  <div class="cursor mono" aria-hidden="true"><span>View ↗</span></div>
+
+  <script src="script.js?v=10"></script>
+</body>
+</html>
