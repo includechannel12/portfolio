@@ -131,7 +131,7 @@ a { color: inherit; text-decoration: none; }
   position: absolute;
   top: 0;
   bottom: 0;
-  width: calc((100% - 1440px) / 2);
+  width: calc((100% - min(1440px, 100% - 2 * var(--gut, 0px))) / 2);
   display: none;
   flex-direction: column;
   overflow: hidden;
@@ -143,7 +143,11 @@ a { color: inherit; text-decoration: none; }
 /* boards never shrink below 300px; extra width is cropped at the screen edge, not the border */
 .side svg { flex: none; width: max(100%, 300px); height: auto; }
 
-@media (min-width: 1560px) {
+/* On every desktop width the sheet leaves a gutter on both sides,
+   so the illustrations always have room outside the border. */
+@media (min-width: 1200px) {
+  .hero-band { --gut: clamp(120px, 12vw, 260px); }
+  .hero-band > .sheet { max-width: min(1440px, calc(100% - 2 * var(--gut))); }
   .side { display: flex; }
 }
 
