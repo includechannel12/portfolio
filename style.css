@@ -778,3 +778,9 @@ html.is-intro .lofi {
   .work__grid { grid-template-columns: 1fr; }
   .tile { border-right: 0 !important; }
 }
+
+/* ---------- Smooth scrolling (Lenis) ---------- */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }

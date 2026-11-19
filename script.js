@@ -15,6 +15,37 @@ const frame = () => new Promise((r) => {
   setTimeout(finish, 60);
 });
 
+/* 0. Smooth scrolling (Lenis) — skipped for reduced motion or if the CDN fails */
+const lenis = !reduced && window.Lenis
+  ? new Lenis({
+      duration: 1.15,                                     // glide length (s)
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 1.2,
+    })
+  : null;
+if (lenis) {
+  const loop = (t) => { lenis.raf(t); requestAnimationFrame(loop); };
+  requestAnimationFrame(loop);
+}
+// smooth scroll to a target (element, selector or y), falling back to native
+function smoothTo(target, offset = 0) {
+  if (lenis) return lenis.scrollTo(target, { offset });
+  const y = typeof target === "number" ? target
+    : (typeof target === "string" ? document.querySelector(target) : target).getBoundingClientRect().top + scrollY + offset;
+  scrollTo({ top: y, behavior: reduced ? "auto" : "smooth" });
+}
+// in-page links (#work, #) glide instead of jumping; offset clears the sticky top bar
+document.addEventListener("click", (e) => {
+  const a = e.target.closest('a[href^="#"]');
+  if (!a || a.classList.contains("key")) return;
+  const id = a.getAttribute("href");
+  e.preventDefault();
+  if (id === "#") smoothTo(0);
+  else if (document.querySelector(id)) smoothTo(id, -56);
+});
+
 /* 1. Live clocks (top bar + footer) ---------------------------- */
 const TIMEZONE = "Asia/Jakarta";
 function tick() {
@@ -395,7 +426,7 @@ if (finePointer && cursor) {
 /* 5. Footer keys: real keyboard shortcuts E / U / T ------------- */
 const keyMap = { e: 0, u: 1, t: 2 };
 const keys = [...document.querySelectorAll(".key")];
-keys[2]?.addEventListener("click", (e) => { e.preventDefault(); scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" }); });
+keys[2]?.addEventListener("click", (e) => { e.preventDefault(); smoothTo(0); });
 addEventListener("keydown", (e) => {
   if (e.metaKey || e.ctrlKey || e.altKey || /input|textarea/i.test(e.target.tagName)) return;
   const k = keys[keyMap[e.key.toLowerCase()]];
@@ -422,6 +453,7 @@ function endIntro() {
   document.querySelectorAll(".lofi-hide").forEach((el) => el.classList.remove("lofi-hide"));
   setTimeout(() => document.querySelectorAll(".lofi-anim").forEach((el) => el.classList.remove("lofi-anim")), 900);
   lofi?.remove();
+  lenis?.start();
 }
 
 if (root.classList.contains("is-intro") && lofi && !reduced) {
@@ -433,6 +465,8 @@ if (root.classList.contains("is-intro") && lofi && !reduced) {
 
 async function runIntro() {
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  lenis?.scrollTo(0, { immediate: true });
+  lenis?.stop(); // no scrolling while the intro plays
   scrollTo(0, 0);
   try { await document.fonts.ready; } catch {}
 
