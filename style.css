@@ -807,7 +807,8 @@ html.lenis, html.lenis body { height: auto; }
   transform: translateX(-50%);
   transition: opacity .5s var(--ease), transform .5s var(--ease);
 }
-html.is-intro .tl { opacity: 0; transform: translate(-50%, 24px); pointer-events: none; }
+/* hidden until the page scrolls; fades away again once scrolling stops */
+.tl:not(.is-visible), html.is-intro .tl { opacity: 0; transform: translate(-50%, 24px); pointer-events: none; }
 
 .tl__meta { display: flex; align-items: center; gap: 8px; font-size: 10.5px; white-space: nowrap; }
 .tl__rec { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }

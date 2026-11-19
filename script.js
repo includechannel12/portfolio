@@ -538,7 +538,23 @@ if (tl) {
     if (e.key === "End") { e.preventDefault(); smoothTo(max); }
   });
 
-  addEventListener("scroll", update, { passive: true });
+  // only show while scrolling; stay up while hovered, focused or being dragged
+  let hideT, hovering = false;
+  const HIDE_AFTER = 1200; // ms of no scrolling before it fades out
+  const scheduleHide = () => {
+    clearTimeout(hideT);
+    hideT = setTimeout(() => {
+      if (hovering || downX !== null || tl.contains(document.activeElement)) return scheduleHide();
+      tl.classList.remove("is-visible");
+    }, HIDE_AFTER);
+  };
+  tl.addEventListener("pointerenter", () => { hovering = true; });
+  tl.addEventListener("pointerleave", () => { hovering = false; scheduleHide(); });
+  addEventListener("scroll", () => {
+    update();
+    if (!document.documentElement.classList.contains("is-intro")) tl.classList.add("is-visible");
+    scheduleHide();
+  }, { passive: true });
   addEventListener("resize", layout);
   addEventListener("load", layout);
   document.fonts?.ready.then(layout);
