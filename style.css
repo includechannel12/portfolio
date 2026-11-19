@@ -149,10 +149,11 @@ a { color: inherit; text-decoration: none; }
 
 /* Keep the boards quiet: one faint hairline tone, no dark or coloured fills,
    fading out toward the screen edge and the bottom of the hero. */
-.side { --art: #dcdad3; opacity: .7; }
-@media (prefers-color-scheme: dark) { .side { --art: #2a2a27; } }
-.side--left  { -webkit-mask-image: linear-gradient(to left, #000 35%, transparent 100%); mask-image: linear-gradient(to left, #000 35%, transparent 100%); }
-.side--right { -webkit-mask-image: linear-gradient(to right, #000 35%, transparent 100%); mask-image: linear-gradient(to right, #000 35%, transparent 100%); }
+/* subtle but readable in both themes (contrast tuned against --bg) */
+.side { --art: #c4c1b7; opacity: .9; }
+@media (prefers-color-scheme: dark) { .side { --art: #4a4944; } }
+.side--left  { -webkit-mask-image: linear-gradient(to left, #000 55%, rgba(0,0,0,.25) 100%); mask-image: linear-gradient(to left, #000 55%, rgba(0,0,0,.25) 100%); }
+.side--right { -webkit-mask-image: linear-gradient(to right, #000 55%, rgba(0,0,0,.25) 100%); mask-image: linear-gradient(to right, #000 55%, rgba(0,0,0,.25) 100%); }
 .side .fill-ink, .side .fill-accent, .side .fill-select { fill: none !important; stroke: var(--art) !important; }
 .side circle.fill-ink, .side circle.fill-accent { fill: var(--art) !important; stroke: none !important; } /* small dots stay dots */
 .side .stroke-ink, .side .stroke-accent { stroke: var(--art) !important; }
