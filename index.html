@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=13" />
+  <link rel="stylesheet" href="style.css?v=14" />
 </head>
 <body>
   <!-- Intro layer: lo-fi skeleton of the page, resolved into the real thing -->
@@ -237,9 +237,28 @@
    </div>
   </footer>
 
+  <!-- Scroll indicator styled as a motion timeline: playhead = scroll position -->
+  <nav class="tl" aria-label="Page timeline">
+    <div class="tl__meta mono">
+      <span class="tl__rec"></span>
+      <span class="tl__tc">00:00:00</span>
+      <span class="tl__fr">F000</span>
+    </div>
+    <div class="tl__track" role="slider" tabindex="0" aria-label="Scroll position" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <div class="tl__segs"></div>
+      <div class="tl__ruler"></div>
+      <div class="tl__view"></div>
+      <div class="tl__head"></div>
+    </div>
+    <div class="tl__sec mono">
+      <b class="tl__name">Hero</b>
+      <span class="tl__pct">0%</span>
+    </div>
+  </nav>
+
   <div class="cursor mono" aria-hidden="true"><span>View ↗</span></div>
 
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-  <script src="script.js?v=11"></script>
+  <script src="script.js?v=12"></script>
 </body>
 </html>

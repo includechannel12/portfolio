@@ -437,6 +437,114 @@ addEventListener("keydown", (e) => {
   setTimeout(() => { k.classList.remove("is-down"); k.click(); }, 140);
 });
 
+/* 5b. Scroll timeline: the page as a motion timeline ------------ */
+const tl = document.querySelector(".tl");
+if (tl) {
+  const track = tl.querySelector(".tl__track");
+  const segsEl = tl.querySelector(".tl__segs");
+  const head = tl.querySelector(".tl__head");
+  const view = tl.querySelector(".tl__view");
+  const tcEl = tl.querySelector(".tl__tc");
+  const frEl = tl.querySelector(".tl__fr");
+  const secName = tl.querySelector(".tl__name");
+  const pctEl = tl.querySelector(".tl__pct");
+
+  const FPS = 24, SECONDS = 10;                 // the whole page "plays" as 10s at 24fps
+  const SECTIONS = [[".hero-band", "Hero"], ["#work", "Work"], [".foot", "Contact"]];
+  const pad = (n, l = 2) => String(n).padStart(l, "0");
+  const maxScroll = () => Math.max(1, document.documentElement.scrollHeight - innerHeight);
+  let marks = [];
+
+  function layout() {
+    const max = maxScroll();
+    const main = document.querySelector("main");
+    marks = SECTIONS.map(([sel, name]) => {
+      // the footer is sticky, so its start is where <main> ends
+      const top = sel === ".foot"
+        ? main.getBoundingClientRect().top + scrollY + main.offsetHeight
+        : document.querySelector(sel).getBoundingClientRect().top + scrollY;
+      const s = sel === ".hero-band" ? 0 : top - innerHeight * 0.5; // section "starts" mid-screen
+      return { name, p: Math.min(1, Math.max(0, s / max)) };
+    });
+    segsEl.innerHTML = "";
+    marks.forEach((m, i) => {
+      const end = i < marks.length - 1 ? marks[i + 1].p : 1;
+      const seg = document.createElement("div");
+      seg.className = "tl__seg";
+      seg.style.left = `calc(${m.p * 100}% + 1px)`;
+      seg.style.width = `calc(${(end - m.p) * 100}% - 2px)`;
+      seg.textContent = m.name;
+      segsEl.appendChild(seg);
+      const key = document.createElement("button");
+      key.className = "tl__key";
+      key.type = "button";
+      key.title = `Jump to ${m.name}`;
+      key.setAttribute("aria-label", `Jump to ${m.name}`);
+      key.style.left = `${m.p * 100}%`;
+      key.addEventListener("pointerdown", (e) => e.stopPropagation());
+      key.addEventListener("click", () => smoothTo(m.p * maxScroll()));
+      track.appendChild(key);
+      m.seg = seg; m.key = key;
+    });
+    track.querySelectorAll(".tl__key").forEach((k) => { if (!marks.some((m) => m.key === k)) k.remove(); });
+    update();
+  }
+
+  let idle;
+  function update() {
+    const max = maxScroll();
+    const docH = document.documentElement.scrollHeight;
+    const p = Math.min(1, Math.max(0, scrollY / max));
+    head.style.left = `${p * 100}%`;
+    view.style.left = `${(scrollY / docH) * 100}%`;
+    view.style.width = `${(innerHeight / docH) * 100}%`;
+
+    const frame = Math.round(p * FPS * SECONDS);
+    tcEl.textContent = `00:${pad(Math.floor(frame / FPS))}:${pad(frame % FPS)}`;
+    frEl.textContent = `F${pad(frame, 3)}`;
+    pctEl.textContent = `${Math.round(p * 100)}%`;
+    track.setAttribute("aria-valuenow", Math.round(p * 100));
+
+    let active = marks[0];
+    marks.forEach((m) => { if (p >= m.p - 0.001) active = m; m.key?.classList.toggle("is-passed", p >= m.p - 0.001); });
+    marks.forEach((m) => m.seg?.classList.toggle("is-active", m === active));
+    if (active) secName.textContent = active.name;
+
+    tl.classList.add("is-moving");
+    clearTimeout(idle);
+    idle = setTimeout(() => tl.classList.remove("is-moving"), 350);
+  }
+
+  // scrub: drag to scrub instantly, click to glide there
+  const toP = (x) => { const r = track.getBoundingClientRect(); return Math.min(1, Math.max(0, (x - r.left) / r.width)); };
+  let downX = null, dragged = false;
+  track.addEventListener("pointerdown", (e) => { downX = e.clientX; dragged = false; track.setPointerCapture(e.pointerId); });
+  track.addEventListener("pointermove", (e) => {
+    if (downX === null) return;
+    if (Math.abs(e.clientX - downX) > 3) dragged = true;
+    if (!dragged) return;
+    const y = toP(e.clientX) * maxScroll();
+    lenis ? lenis.scrollTo(y, { immediate: true }) : scrollTo(0, y);
+  });
+  track.addEventListener("pointerup", (e) => {
+    if (downX !== null && !dragged) smoothTo(toP(e.clientX) * maxScroll());
+    downX = null;
+  });
+  track.addEventListener("keydown", (e) => {
+    const step = { ArrowRight: 0.05, ArrowLeft: -0.05, PageDown: 0.2, PageUp: -0.2 }[e.key];
+    const max = maxScroll();
+    if (step !== undefined) { e.preventDefault(); smoothTo(Math.min(max, Math.max(0, scrollY + step * max))); }
+    if (e.key === "Home") { e.preventDefault(); smoothTo(0); }
+    if (e.key === "End") { e.preventDefault(); smoothTo(max); }
+  });
+
+  addEventListener("scroll", update, { passive: true });
+  addEventListener("resize", layout);
+  addEventListener("load", layout);
+  document.fonts?.ready.then(layout);
+  layout();
+}
+
 /* 6. Intro: lo-fi wireframe → hi-fi ----------------------------- */
 const LOFI = {
   draw: 1100,  // total time for skeleton bars to draw in (ms)
