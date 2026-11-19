@@ -226,9 +226,20 @@ a { color: inherit; text-decoration: none; }
 .side .cursor-move { animation: cursorMove 7s var(--ease-io) infinite; }
 @keyframes cursorMove { 0%, 100% { transform: translate(0, 0); } 45% { transform: translate(-46px, -20px); } 70% { transform: translate(-20px, 10px); } }
 
+/* Hero fills the first screen (below the 56px top bar); its content sits in the middle */
+.hero-band > .sheet {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 56px);
+  min-height: calc(100svh - 56px);
+}
 .hero {
-  /* roomier: more air above, below and from the sheet's left border */
-  padding: clamp(64px, 10vw, 128px) clamp(24px, 6vw, 96px) clamp(64px, 8vw, 112px);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: flex-start;
+  padding: clamp(40px, 7vh, 96px) clamp(24px, 6vw, 96px);
   max-width: 600px;
   box-sizing: content-box;
 }
