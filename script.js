@@ -255,7 +255,7 @@ function buildRight() {
 
 // AF—03: type specimen + palette (left, traces exit right toward the sheet)
 function buildType() {
-  const sw = [["fill-art", "#C9C7BF"], ["fill-bg stroke-ink", "#F7F6F2"], ["fill-ink", "#121212"], ["fill-accent", "#FF5A1F"], ["fill-select", "#2F6BFF"]];
+  const sw = [["fill-art", "#C9C7BF"], ["fill-bg stroke-ink", "#F7F6F2"], ["fill-ink", "#121212"], ["fill-accent", "#262629"], ["fill-select", "#2F6BFF"]];
   let swatches = "";
   sw.forEach(([c, hex], i) => {
     const x = 30 + i * 62;

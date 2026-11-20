@@ -8,7 +8,11 @@
   --art: #c9c7bf;          /* hairline colour of the hero illustrations */
   --sk: #dedcd5;           /* lo-fi skeleton fill */
   --sk-line: #c4c2ba;      /* lo-fi skeleton outline */
-  --accent: #ff5a1f;       /* main accent colour */
+  --accent: #18181b;       /* brand: black (lines, text accents) */
+  /* brand surface, same recipe as the AF logo */
+  --brand-grad: linear-gradient(180deg, #262629 0%, #18181b 100%);
+  --brand-edge: #000;
+  --brand-glow: inset 0 1px 1px rgba(255,255,255,.32), inset 0 -1px 1px rgba(255,255,255,.32);
   --select: #2f6bff;       /* Figma-style selection colour used on link hover */
   --foot: #141413;
   --sans: "Manrope", system-ui, sans-serif;
@@ -30,6 +34,7 @@
     --sk: #232321;
     --sk-line: #34332f;
     --foot: #070707;
+    --accent: #e9e8e3;
   }
 }
 
@@ -643,7 +648,7 @@ main {
 }
 .key--wide .key__cap { min-width: 220px; }
 .key__hint { position: absolute; top: 10px; left: 14px; font-size: 10px; color: #8b8a85; }
-.key:hover .key__cap { background: linear-gradient(180deg, #ff7a45, var(--accent)); color: #fff; }
+.key:hover .key__cap { background: var(--brand-grad); color: #fff; box-shadow: 0 0 0 1px var(--brand-edge), inset 0 1.5px 1px rgba(255,255,255,.32), inset 0 -1.5px 1px rgba(255,255,255,.32); }
 .key:hover .key__hint { color: rgba(255,255,255,.75); }
 .key:active, .key.is-down { padding-bottom: 2px; margin-top: 5px; }
 
@@ -1026,7 +1031,7 @@ html.lenis, html.lenis body { height: auto; }
 }
 .review:hover { transform: translateY(-2px); box-shadow: 0 1px 0 var(--line), 0 26px 44px -28px rgba(0,0,0,.45); }
 .review::before {
-  content: "\201C";
+  content: none;
   position: absolute;
   right: 14px;
   top: -22px;
@@ -1050,7 +1055,7 @@ html.lenis, html.lenis body { height: auto; }
 }
 .review mark {
   color: inherit;
-  background: linear-gradient(transparent 58%, color-mix(in srgb, var(--accent) 26%, transparent) 58%);
+  background: none;
   padding: 0 1px;
 }
 .review__by {
@@ -1085,3 +1090,28 @@ html.lenis, html.lenis body { height: auto; }
     transform: rotate(6deg);
   }
 }
+
+
+/* ---------- Brand surface: black, styled like the AF logo ---------- */
+.tile__go,
+.tile:hover .tile__go,
+.cursor,
+.review__avatar,
+.lost:hover .lost__hint, .lost:focus .lost__hint,
+.tl__rec,
+.tl__key.is-passed,
+.fact {
+  color: #fff;
+  background: var(--brand-grad);
+  border: 1px solid var(--brand-edge);
+  box-shadow: var(--brand-glow);
+}
+.cursor { box-shadow: var(--brand-glow), 0 12px 26px -10px rgba(0,0,0,.45); }
+.fact { box-shadow: var(--brand-glow), 0 16px 30px -14px rgba(0,0,0,.45); }
+.fact::after { border-top-color: #18181b; }
+.fact b { color: rgba(255,255,255,.55); }
+.lofi__bar i { background: var(--brand-grad); }
+
+/* the ticket is always light paper, so its accents stay black in both themes */
+.ticket__line a { color: #18181b; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.ticket__stamp { color: #18181b; border-color: #18181b; }
