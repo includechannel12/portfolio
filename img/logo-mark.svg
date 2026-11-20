@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="3.2 3.2 1024 1024" width="1024" height="1024">
+  <!-- Small-size AF mark: same shape and letters as logo.svg, without the
+       hairline brushed texture, inner-shadow filters and outline that blur below ~64px. -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a2a2e"/>
+      <stop offset="1" stop-color="#18181B"/>
+    </linearGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".22"/>
+      <stop offset=".35" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect x="3.2" y="3.2" width="1024" height="1024" rx="204.8" fill="url(#bg)"/>
+  <rect x="11.2" y="11.2" width="1008" height="1008" rx="196.8" fill="none" stroke="url(#rim)" stroke-width="16"/>
+  <path fill="#fff" d="M430.524 348.8L538.684 681.6H488.533L396.32 397.564L302.951 681.6H252.8L360.96 348.8H430.524Z"/>
+  <path fill="#fff" d="M581.055 681.6V348.8H778.193V397.102H629.357V490.933H750.459V539.467H629.357V681.6H581.055Z"/>
+</svg>

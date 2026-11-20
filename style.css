@@ -941,7 +941,7 @@ html.lenis, html.lenis body { height: auto; }
 }
 
 /* ---------- Nav logo ---------- */
-.brand__logo { display: block; width: 24px; height: 24px; border-radius: 6px; transition: transform .5s var(--ease); }
+.brand__logo { display: block; width: 26px; height: 26px; border-radius: 6px; transition: transform .5s var(--ease); }
 .brand:hover .brand__logo { transform: rotate(-8deg) scale(1.08); }
 
 /* ---------- Lost badge: struck through, fun fact on hover / tap ---------- */
