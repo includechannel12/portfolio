@@ -4,7 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Andrean Farhantama · UI/UX Designer</title>
-  <meta name="description" content="Senior UI/UX designer from Yogyakarta. SaaS, e-commerce, mobile apps and landing pages, designed in Figma and shipped with AI-assisted code." />
+  <link rel="icon" type="image/svg+xml" href="img/logo.svg" />
+  <meta name="description" content="UI/UX designer from Yogyakarta. SaaS, e-commerce, mobile apps and landing pages, designed in Figma and shipped with AI-assisted code." />
   <script>
     // Decide before first paint whether the lo-fi → hi-fi intro runs
     // add ?intro to the URL to force it (handy for testing)
@@ -15,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=19" />
+  <link rel="stylesheet" href="style.css?v=20" />
 </head>
 <body>
   <!-- Intro layer: lo-fi skeleton of the page, resolved into the real thing -->
@@ -31,7 +32,7 @@
 
   <header class="topbar">
     <a class="brand" href="#">
-      <span class="brand__mark">AF</span>
+      <img class="brand__logo" src="img/logo.svg" alt="" width="24" height="24" />
       Andrean
     </a>
     <div class="topbar__right">
@@ -71,12 +72,12 @@
           <h1 class="hero__name">
             <span class="first">Andrean</span> <span class="last">Farhantama</span>
           </h1>
-          <p class="hero__role">Senior UI/UX designer who also ships the code</p>
+          <p class="hero__role">UI/UX designer who also ships the code</p>
 
           <div class="hero__bio">
             <p>
               I help <a class="ink" href="#work">SaaS founders</a>, e-commerce brands and digital
-              agencies turn ideas into pixel-perfect products that convert. Six years of UI/UX,
+              agencies turn ideas into pixel-perfect products that convert. Four years of UI/UX,
               plus an AI-assisted workflow with Claude and Cursor, means I go from a Figma
               wireframe to a working product without the usual back-and-forth of a dev handoff.
             </p>
@@ -93,16 +94,36 @@
           </div>
 
           <dl class="stats">
-            <div><dt class="mono">Experience</dt><dd>6+ yrs</dd></div>
+            <div><dt class="mono">Experience</dt><dd>4+ yrs</dd></div>
             <div><dt class="mono">Job success</dt><dd>100%</dd></div>
-            <div><dt class="mono">Upwork</dt><dd>Top Rated</dd></div>
+            <div>
+              <dt class="mono">Upwork</dt>
+              <dd>
+                <span class="lost" tabindex="0" aria-describedby="fact-top-rated">
+                  <s>Top Rated</s><i class="lost__hint mono" aria-hidden="true">?</i>
+                  <span class="fact" role="tooltip" id="fact-top-rated">
+                    <b class="mono">Fun fact</b>
+                    In 2026 my one long-term partnership moved off Upwork, and the Top Rated badge left with it.
+                  </span>
+                </span>
+              </dd>
+            </div>
             <div><dt class="mono">Client rating</dt><dd>5.0 ★</dd></div>
           </dl>
 
-          <blockquote class="quote">
-            <p>“His designs are visually stunning and really precise.”</p>
-            <cite class="mono">— Upwork client, web design contract</cite>
-          </blockquote>
+          <figure class="review">
+            <div class="review__top mono">
+              <span class="review__stars" aria-label="5 out of 5 stars">★★★★★</span>
+              <span>5.0 · Verified Upwork review</span>
+            </div>
+            <blockquote>
+              <p>Andrean went far above and beyond. His designs are <mark>visually stunning and really precise.</mark> He was able to quickly understand the needs of my project and run with it with minimal guidance! Highly recommend.</p>
+            </blockquote>
+            <figcaption class="review__by">
+              <span class="review__avatar mono" aria-hidden="true">UC</span>
+              <span><b>Upwork client</b><i class="mono">Part-time web designer, ongoing projects · May 2025</i></span>
+            </figcaption>
+          </figure>
         </section>
       </div>
 
@@ -223,6 +244,9 @@
       <a class="key key--wide" href="https://www.upwork.com/freelancers/~01982d84a18205971d" target="_blank" rel="noopener">
         <span class="key__cap"><span class="key__hint mono">U</span>Hire on Upwork</span>
       </a>
+      <a class="key" href="https://www.linkedin.com/in/andreanfarhantama/" target="_blank" rel="noopener">
+        <span class="key__cap"><span class="key__hint mono">L</span>LinkedIn</span>
+      </a>
       <a class="key" href="#">
         <span class="key__cap"><span class="key__hint mono">T</span>Top ↑</span>
       </a>
@@ -259,6 +283,6 @@
   <div class="cursor mono" aria-hidden="true"><span>View ↗</span></div>
 
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-  <script src="script.js?v=13"></script>
+  <script src="script.js?v=14"></script>
 </body>
 </html>

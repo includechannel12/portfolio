@@ -939,3 +939,149 @@ html.lenis, html.lenis body { height: auto; }
   .tl__fr, .tl__name { display: none; }
   .tl__seg { font-size: 8px; padding: 3px 4px; }
 }
+
+/* ---------- Nav logo ---------- */
+.brand__logo { display: block; width: 24px; height: 24px; border-radius: 6px; transition: transform .5s var(--ease); }
+.brand:hover .brand__logo { transform: rotate(-8deg) scale(1.08); }
+
+/* ---------- Lost badge: struck through, fun fact on hover / tap ---------- */
+.lost {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: help;
+  outline: none;
+}
+.lost s {
+  color: var(--muted);
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+}
+.lost__hint {
+  display: grid;
+  place-items: center;
+  width: 15px;
+  height: 15px;
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 500;
+  color: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  transition: color .2s, border-color .2s, background .2s;
+}
+.lost:hover .lost__hint, .lost:focus .lost__hint { color: #fff; background: var(--accent); border-color: var(--accent); }
+.fact {
+  position: absolute;
+  left: -12px;
+  bottom: calc(100% + 12px);
+  z-index: 5;
+  width: 250px;
+  padding: 11px 13px;
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: 0;
+  color: var(--bg);
+  background: var(--ink);
+  border-radius: 10px;
+  box-shadow: 0 16px 30px -14px rgba(0,0,0,.45);
+  opacity: 0;
+  transform: translateY(6px) scale(.97);
+  transform-origin: 24px 100%;
+  pointer-events: none;
+  transition: opacity .2s, transform .3s var(--ease);
+}
+.fact::after {
+  content: "";
+  position: absolute;
+  left: 22px;
+  top: 100%;
+  border: 6px solid transparent;
+  border-top-color: var(--ink);
+}
+.fact b {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.lost:hover .fact, .lost:focus .fact { opacity: 1; transform: none; }
+
+/* ---------- Testimonial card ---------- */
+.review {
+  position: relative;
+  margin-top: 28px;
+  padding: 20px 22px 16px;
+  overflow: hidden;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 1px 0 var(--line), 0 18px 36px -28px rgba(0,0,0,.35);
+  transition: transform .5s var(--ease), box-shadow .5s var(--ease);
+}
+.review:hover { transform: translateY(-2px); box-shadow: 0 1px 0 var(--line), 0 26px 44px -28px rgba(0,0,0,.45); }
+.review::before {
+  content: "\201C";
+  position: absolute;
+  right: 14px;
+  top: -22px;
+  font-size: 150px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--accent);
+  opacity: .12;
+  pointer-events: none;
+}
+.review__top { display: flex; align-items: center; gap: 10px; font-size: 10.5px; color: var(--muted); }
+.review__stars { font-size: 12px; letter-spacing: 2px; color: var(--accent); }
+.review blockquote p {
+  position: relative;
+  margin-top: 12px;
+  font-size: 16.5px;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.review mark {
+  color: inherit;
+  background: linear-gradient(transparent 58%, color-mix(in srgb, var(--accent) 26%, transparent) 58%);
+  padding: 0 1px;
+}
+.review__by {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--line);
+}
+.review__avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  font-size: 10.5px;
+  color: var(--bg);
+  background: var(--ink);
+  border-radius: 50%;
+}
+.review__by b { display: block; font-size: 13px; }
+.review__by i { display: block; margin-top: 2px; font-size: 10.5px; font-style: normal; color: var(--muted); }
+
+/* ---------- Ticket stamp: keep it off the CTA on small screens ---------- */
+@media (max-width: 720px) {
+  .ticket__stamp {
+    top: -13px;
+    bottom: auto;
+    right: 16px;
+    background: #fbfaf6;
+    transform: rotate(6deg);
+  }
+}

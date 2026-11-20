@@ -423,10 +423,10 @@ if (finePointer && cursor) {
   });
 }
 
-/* 5. Footer keys: real keyboard shortcuts E / U / T ------------- */
-const keyMap = { e: 0, u: 1, t: 2 };
+/* 5. Footer keys: real keyboard shortcuts E / U / L / T ---------- */
+const keyMap = { e: 0, u: 1, l: 2, t: 3 };
 const keys = [...document.querySelectorAll(".key")];
-keys[2]?.addEventListener("click", (e) => { e.preventDefault(); smoothTo(0); });
+keys[3]?.addEventListener("click", (e) => { e.preventDefault(); smoothTo(0); });
 addEventListener("keydown", (e) => {
   if (e.metaKey || e.ctrlKey || e.altKey || /input|textarea/i.test(e.target.tagName)) return;
   const k = keys[keyMap[e.key.toLowerCase()]];
@@ -609,7 +609,7 @@ async function runIntro() {
     [".hero__role", "text"],
     [".hero__bio p", "text"],
     [".stats", "text", "dt, dd"],
-    [".quote", "text", "p, cite"],
+    [".review", "text", ".review__top, blockquote p, .review__by"],
     [".side--right", "box", "ILLUSTRATION"],
     [".work__head", "text", "h2, p, .work__count"],
     [".tile", "box", "IMAGE · 4:3"],
