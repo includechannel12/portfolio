@@ -400,13 +400,22 @@ const foot = document.querySelector(".foot");
 const mainEl = document.querySelector("main");
 function updateReveal() {
   const fh = foot.offsetHeight;
-  const canReveal = !reduced && fh < innerHeight * 0.92;
+  const canReveal = !reduced && fh <= innerHeight; // pinned reveal only works if the footer fits on screen
   foot.classList.toggle("is-reveal", canReveal);
   if (!canReveal) { foot.style.removeProperty("--reveal"); return; }
   const shown = innerHeight - mainEl.getBoundingClientRect().bottom; // px of footer uncovered
   foot.style.setProperty("--reveal", Math.min(1, Math.max(0, shown / fh)).toFixed(3));
 }
 addEventListener("scroll", updateReveal, { passive: true });
+
+// the "Available" seal stamps down once the ticket is mostly in view
+const ticketEl = document.querySelector(".ticket");
+if (ticketEl) {
+  if (reduced || !("IntersectionObserver" in window)) ticketEl.classList.add("is-stamped");
+  else new IntersectionObserver((entries, io) => {
+    if (entries.some((e) => e.isIntersecting)) { setTimeout(() => ticketEl.classList.add("is-stamped"), 250); io.disconnect(); }
+  }, { threshold: 0.75 }).observe(ticketEl);
+}
 addEventListener("resize", updateReveal);
 updateReveal();
 
