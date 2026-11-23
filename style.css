@@ -1234,3 +1234,17 @@ html.lenis, html.lenis body { height: auto; }
   background: linear-gradient(180deg, rgba(0,0,0,.85), rgba(0,0,0,.35));
   opacity: calc(1 - var(--reveal, 1));
 }
+
+/* ---------- Mobile keypad: 2 rows that fill the case ----------
+   row 1: Email | Hire on Upwork      row 2: LinkedIn (fills) | ↑ */
+@media (max-width: 720px) {
+  .pad { width: 100%; }
+  .keys {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) var(--u);
+    gap: 8px;
+  }
+  .keys .key { width: auto; }
+  .keys .key--accent { grid-column: span 2; }       /* Hire on Upwork */
+  .keys .key:nth-child(3) { grid-column: span 2; }  /* LinkedIn fills the row */
+}
