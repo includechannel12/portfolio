@@ -442,8 +442,65 @@ addEventListener("keydown", (e) => {
   if (!k) return;
   const foot = document.querySelector(".foot").getBoundingClientRect();
   if (foot.top > innerHeight) return; // only when the footer is on screen
+  if (e.repeat) return;
   k.classList.add("is-down");
-  setTimeout(() => { k.classList.remove("is-down"); k.click(); }, 140);
+  keySound("down", k);
+  setTimeout(() => { k.classList.remove("is-down"); keySound("up", k); k.click(); }, 140);
+});
+
+/* Mechanical key sound, synthesized with Web Audio (no audio files).
+   down = switch click + low "thock" as the cap bottoms out; up = lighter tick. */
+const KEY_VOLUME = 0.55; // 0 = silent, 1 = loud
+let actx = null;
+function keySound(kind, keyEl) {
+  if (!KEY_VOLUME) return;
+  try {
+    actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+    if (actx.state === "suspended") actx.resume();
+    const t = actx.currentTime;
+    const deep = keyEl?.classList.contains("key--accent") || keyEl?.classList.contains("key--u25");
+    const vary = 0.94 + Math.random() * 0.12; // every press sounds a little different
+
+    const out = actx.createGain();
+    out.gain.value = KEY_VOLUME * (kind === "down" ? 1 : 0.55);
+    out.connect(actx.destination);
+
+    // switch click: a very short burst of filtered noise
+    const len = kind === "down" ? 0.032 : 0.018;
+    const buf = actx.createBuffer(1, Math.ceil(actx.sampleRate * len), actx.sampleRate);
+    const data = buf.getChannelData(0);
+    for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / data.length, 3);
+    const noise = actx.createBufferSource();
+    noise.buffer = buf;
+    const band = actx.createBiquadFilter();
+    band.type = "bandpass";
+    band.frequency.value = (kind === "down" ? (deep ? 1700 : 2500) : 4200) * vary;
+    band.Q.value = 1.1;
+    noise.connect(band).connect(out);
+    noise.start(t);
+
+    // body: the cap hitting the plate
+    if (kind === "down") {
+      const osc = actx.createOscillator();
+      osc.type = "triangle";
+      const f0 = (deep ? 135 : 185) * vary;
+      osc.frequency.setValueAtTime(f0, t);
+      osc.frequency.exponentialRampToValueAtTime(f0 * 0.5, t + 0.06);
+      const g = actx.createGain();
+      g.gain.setValueAtTime(0.45, t);
+      g.gain.exponentialRampToValueAtTime(0.001, t + 0.085);
+      osc.connect(g).connect(out);
+      osc.start(t);
+      osc.stop(t + 0.1);
+    }
+  } catch { /* audio unavailable: stay silent */ }
+}
+keys.forEach((k) => {
+  k.addEventListener("pointerdown", () => keySound("down", k));
+  k.addEventListener("pointerup", () => keySound("up", k));
+  // keyboard activation (Tab to a key, then Enter / Space)
+  k.addEventListener("keydown", (e) => { if ((e.key === "Enter" || e.key === " ") && !e.repeat) keySound("down", k); });
+  k.addEventListener("keyup", (e) => { if (e.key === "Enter" || e.key === " ") keySound("up", k); });
 });
 
 /* 5b. Scroll timeline: the page as a motion timeline ------------ */
