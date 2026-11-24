@@ -582,7 +582,14 @@ const xpChart = document.querySelector(".xp__chart");
 document.querySelectorAll(".xp__item").forEach((item) => {
   const row = item.querySelector(".xp__row");
   row.addEventListener("click", () => {
-    const open = item.classList.toggle("is-open");
+    const open = !item.classList.contains("is-open");
+    // only one role open at a time: close the others first
+    document.querySelectorAll(".xp__item.is-open").forEach((other) => {
+      if (other === item) return;
+      other.classList.remove("is-open");
+      other.querySelector(".xp__row").setAttribute("aria-expanded", "false");
+    });
+    item.classList.toggle("is-open", open);
     row.setAttribute("aria-expanded", open);
     uiSound(open ? "open" : "close");
   });
