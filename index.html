@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=27" />
+  <link rel="stylesheet" href="style.css?v=28" />
 </head>
 <body>
   <!-- Intro layer: lo-fi skeleton of the page, resolved into the real thing -->
@@ -208,6 +208,105 @@
         </a>
       </div>
     </section>
+
+    <section class="xp" id="experience" aria-labelledby="xp-title">
+      <div class="xp__sheet">
+        <header class="xp__head">
+          <p class="xp__eyebrow mono">Fig 02 — Track record</p>
+          <h2 id="xp-title">Experience</h2>
+          <p class="xp__lede">Four years designing products with teams in Bandung, Yogyakarta and the Netherlands, now independently for clients worldwide.</p>
+          <dl class="xp__facts mono">
+            <div><dt>Years</dt><dd>4+</dd></div>
+            <div><dt>Teams</dt><dd>3</dd></div>
+            <div><dt>Based</dt><dd>Remote · UTC+7</dd></div>
+          </dl>
+        </header>
+
+        <div class="xp__body">
+          <!-- mini timeline: how the roles overlap; hover links to the list -->
+          <div class="xp__chart" aria-hidden="true">
+            <div class="xp__years mono"><span>2018</span><span>2019</span><span>2020</span><span>2021</span><span>2022</span><span>2023</span><span>2024</span><span>2025</span><span>2026</span></div>
+            <div class="xp__bars">
+              <i class="xp__bar is-now" data-xp="freelance" style="--from:4;--to:8.9"><b>Freelance</b></i>
+              <i class="xp__bar" data-xp="madeindonesia" style="--from:5;--to:7"><b>MadeIndonesia</b></i>
+              <i class="xp__bar" data-xp="berkatsoft" style="--from:4;--to:5.9"><b>BerkatSoft</b></i>
+              <i class="xp__bar is-edu" data-xp="uad" style="--from:0;--to:4"><b>UAD</b></i>
+            </div>
+          </div>
+
+          <ol class="xp__list">
+            <li class="xp__item is-open" data-xp="freelance">
+              <button class="xp__row" type="button" aria-expanded="true" aria-controls="xp-p1">
+                <span class="xp__logo is-brand mono" aria-hidden="true">UP</span>
+                <span class="xp__main"><b class="xp__role">UI/UX Designer</b><span class="xp__co">Freelance · Upwork <em class="xp__now mono">Now</em></span></span>
+                <span class="xp__lead" aria-hidden="true"></span>
+                <span class="xp__when mono">2022 — Present<small>4 yrs</small></span>
+                <span class="xp__toggle" aria-hidden="true"></span>
+              </button>
+              <div class="xp__panel" id="xp-p1"><div class="xp__inner">
+                <ul class="xp__points">
+                  <li>Design and ship landing pages, SaaS dashboards and Shopify stores for founders, e-commerce brands and agencies.</li>
+                  <li>Ongoing contracts: an AI / SaaS book-publishing platform landing page, and Figma to Elementor Pro builds.</li>
+                  <li>Redesigned a Shopify store's UI and product pages over seven months (Dec 2024 – Jul 2025).</li>
+                  <li>100% Job Success and a 5.0 client rating, with an AI-assisted workflow (Claude + Cursor) from wireframe to live page.</li>
+                </ul>
+                <div class="xp__chips mono"><span>Figma</span><span>Framer</span><span>Webflow</span><span>Shopify</span><span>Claude</span><span>Cursor</span></div>
+              </div></div>
+            </li>
+
+            <li class="xp__item" data-xp="madeindonesia">
+              <button class="xp__row" type="button" aria-expanded="false" aria-controls="xp-p2">
+                <span class="xp__logo mono" aria-hidden="true">MI</span>
+                <span class="xp__main"><b class="xp__role">UI/UX Designer</b><span class="xp__co">MadeIndonesia</span></span>
+                <span class="xp__lead" aria-hidden="true"></span>
+                <span class="xp__when mono">2023 — 2024<small>1 yr</small></span>
+                <span class="xp__toggle" aria-hidden="true"></span>
+              </button>
+              <div class="xp__panel" id="xp-p2"><div class="xp__inner">
+                <ul class="xp__points">
+                  <li>Redesigned the platform of Intelligence Group, a Dutch labour-market data company: 20+ pages designed for WordPress and Elementor.</li>
+                  <li>Owned the design handoff to developers, from landing page to company-policy pages.</li>
+                </ul>
+                <div class="xp__chips mono"><span>Figma</span><span>WordPress</span><span>Elementor</span><span>Design handoff</span></div>
+              </div></div>
+            </li>
+
+            <li class="xp__item" data-xp="berkatsoft">
+              <button class="xp__row" type="button" aria-expanded="false" aria-controls="xp-p3">
+                <span class="xp__logo mono" aria-hidden="true">BS</span>
+                <span class="xp__main"><b class="xp__role">UI/UX Designer</b><span class="xp__co">BerkatSoft · Bandung</span></span>
+                <span class="xp__lead" aria-hidden="true"></span>
+                <span class="xp__when mono">2022 — 2023<small>1 yr</small></span>
+                <span class="xp__toggle" aria-hidden="true"></span>
+              </button>
+              <div class="xp__panel" id="xp-p3"><div class="xp__inner">
+                <ul class="xp__points">
+                  <li>Designed Nextflow, the team's internal product-management tool for tasks, timelines and resources, with a WhatsApp chatbot integration.</li>
+                  <li>Rebuilt the HRIS mobile app for BBWS Citarum, improving everyday HR operations and data privacy.</li>
+                </ul>
+                <div class="xp__chips mono"><span>Figma</span><span>Dashboards</span><span>Mobile apps</span><span>Prototyping</span></div>
+              </div></div>
+            </li>
+
+            <li class="xp__item is-edu" data-xp="uad">
+              <button class="xp__row" type="button" aria-expanded="false" aria-controls="xp-p4">
+                <span class="xp__logo mono" aria-hidden="true">UAD</span>
+                <span class="xp__main"><b class="xp__role">B.CompSc, Informatics</b><span class="xp__co">Universitas Ahmad Dahlan · Yogyakarta</span></span>
+                <span class="xp__lead" aria-hidden="true"></span>
+                <span class="xp__when mono">2018 — 2022<small>4 yrs</small></span>
+                <span class="xp__toggle" aria-hidden="true"></span>
+              </button>
+              <div class="xp__panel" id="xp-p4"><div class="xp__inner">
+                <ul class="xp__points">
+                  <li>Bachelor of Computer Science in Informatics, the engineering side that lets me design things that can actually be built.</li>
+                  <li>Later certified in User Experience Design Fundamentals (IBM, 2025).</li>
+                </ul>
+              </div></div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="foot">
@@ -316,6 +415,6 @@
   <div class="cursor mono" aria-hidden="true"><span>View ↗</span></div>
 
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-  <script src="script.js?v=17"></script>
+  <script src="script.js?v=18"></script>
 </body>
 </html>

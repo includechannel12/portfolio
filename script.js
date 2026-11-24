@@ -503,6 +503,23 @@ keys.forEach((k) => {
   k.addEventListener("keyup", (e) => { if (e.key === "Enter" || e.key === " ") keySound("up", k); });
 });
 
+/* 5a. Experience: accordion rows + highlight the matching timeline bar */
+const xpChart = document.querySelector(".xp__chart");
+document.querySelectorAll(".xp__item").forEach((item) => {
+  const row = item.querySelector(".xp__row");
+  row.addEventListener("click", () => {
+    const open = item.classList.toggle("is-open");
+    row.setAttribute("aria-expanded", open);
+  });
+  const bar = xpChart?.querySelector(`[data-xp="${item.dataset.xp}"]`);
+  const on = () => { xpChart?.classList.add("has-active"); bar?.classList.add("is-active"); };
+  const off = () => { xpChart?.classList.remove("has-active"); bar?.classList.remove("is-active"); };
+  item.addEventListener("mouseenter", on);
+  item.addEventListener("mouseleave", off);
+  row.addEventListener("focus", on);
+  row.addEventListener("blur", off);
+});
+
 /* 5b. Scroll timeline: the page as a motion timeline ------------ */
 const tl = document.querySelector(".tl");
 if (tl) {
@@ -516,7 +533,7 @@ if (tl) {
   const pctEl = tl.querySelector(".tl__pct");
 
   const FPS = 24, SECONDS = 10;                 // the whole page "plays" as 10s at 24fps
-  const SECTIONS = [[".hero-band", "Hero"], ["#work", "Work"], [".foot", "Contact"]];
+  const SECTIONS = [[".hero-band", "Hero"], ["#work", "Work"], ["#experience", "Experience"], [".foot", "Contact"]];
   const pad = (n, l = 2) => String(n).padStart(l, "0");
   const maxScroll = () => Math.max(1, document.documentElement.scrollHeight - innerHeight);
   let marks = [];
