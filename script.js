@@ -445,6 +445,7 @@ addEventListener("keydown", (e) => {
   if (e.repeat) return;
   k.classList.add("is-down");
   keySound("down", k);
+  ledFlash();
   setTimeout(() => { k.classList.remove("is-down"); keySound("up", k); k.click(); }, 140);
 });
 
@@ -495,8 +496,52 @@ function keySound(kind, keyEl) {
     }
   } catch { /* audio unavailable: stay silent */ }
 }
+const flashLed = document.querySelector(".pad__leds i:nth-child(2)");
+function ledFlash() {
+  if (!flashLed) return;
+  flashLed.classList.add("is-flash");
+  clearTimeout(ledFlash.t);
+  ledFlash.t = setTimeout(() => flashLed.classList.remove("is-flash"), 120);
+}
+/* Experience rows: switch click + a short two-note chime, rising on open, falling on close */
+const UI_VOLUME = 0.4;
+function uiSound(kind) {
+  if (!UI_VOLUME) return;
+  try {
+    actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+    if (actx.state === "suspended") actx.resume();
+    const t = actx.currentTime;
+    const out = actx.createGain();
+    out.gain.value = UI_VOLUME;
+    out.connect(actx.destination);
+
+    // tactile click, same family as the footer keys
+    const len = 0.02;
+    const buf = actx.createBuffer(1, Math.ceil(actx.sampleRate * len), actx.sampleRate);
+    const d = buf.getChannelData(0);
+    for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / d.length, 3);
+    const n = actx.createBufferSource(); n.buffer = buf;
+    const bp = actx.createBiquadFilter(); bp.type = "bandpass"; bp.frequency.value = 3000; bp.Q.value = 1.2;
+    const ng = actx.createGain(); ng.gain.value = 0.6;
+    n.connect(bp).connect(ng).connect(out); n.start(t);
+
+    // chime: two short notes (a fifth apart), soft square-ish tone filtered to stay warm
+    const notes = kind === "open" ? [659.25, 987.77] : [987.77, 659.25]; // E5 → B5, or back down
+    const lp = actx.createBiquadFilter(); lp.type = "lowpass"; lp.frequency.value = 2400; lp.connect(out);
+    notes.forEach((f, i) => {
+      const st = t + 0.018 + i * 0.07;
+      const o = actx.createOscillator(); o.type = "triangle"; o.frequency.value = f;
+      const g = actx.createGain();
+      g.gain.setValueAtTime(0.0001, st);
+      g.gain.exponentialRampToValueAtTime(0.22, st + 0.008);
+      g.gain.exponentialRampToValueAtTime(0.0001, st + 0.12);
+      o.connect(g).connect(lp); o.start(st); o.stop(st + 0.14);
+    });
+  } catch { /* audio unavailable */ }
+}
+
 keys.forEach((k) => {
-  k.addEventListener("pointerdown", () => keySound("down", k));
+  k.addEventListener("pointerdown", () => { keySound("down", k); ledFlash(); });
   k.addEventListener("pointerup", () => keySound("up", k));
   // keyboard activation (Tab to a key, then Enter / Space)
   k.addEventListener("keydown", (e) => { if ((e.key === "Enter" || e.key === " ") && !e.repeat) keySound("down", k); });
@@ -515,6 +560,23 @@ keys.forEach((k) => {
   document.querySelectorAll(".xp__bar.is-now").forEach((b) => b.style.setProperty("--to", Math.min(48, nowIdx).toFixed(2)));
 })();
 
+/* Footer spotlight: follow the cursor while it's over the footer */
+const footEl = document.querySelector(".foot");
+const spot = document.querySelector(".foot__spot");
+if (footEl && spot && finePointer) {
+  footEl.addEventListener("mousemove", (e) => {
+    const r = footEl.getBoundingClientRect();
+    footEl.classList.add("is-tracking");
+    spot.style.setProperty("--sx", `${e.clientX - r.left}px`);
+    spot.style.setProperty("--sy", `${e.clientY - r.top}px`);
+  });
+  footEl.addEventListener("mouseleave", () => {
+    footEl.classList.remove("is-tracking");
+    spot.style.removeProperty("--sx");
+    spot.style.removeProperty("--sy");
+  });
+}
+
 /* 5a'. Experience: accordion rows + highlight the matching timeline bar */
 const xpChart = document.querySelector(".xp__chart");
 document.querySelectorAll(".xp__item").forEach((item) => {
@@ -522,6 +584,7 @@ document.querySelectorAll(".xp__item").forEach((item) => {
   row.addEventListener("click", () => {
     const open = item.classList.toggle("is-open");
     row.setAttribute("aria-expanded", open);
+    uiSound(open ? "open" : "close");
   });
   const bar = xpChart?.querySelector(`[data-xp="${item.dataset.xp}"]`);
   const on = () => { xpChart?.classList.add("has-active"); bar?.classList.add("is-active"); };

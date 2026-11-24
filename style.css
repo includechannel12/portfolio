@@ -1450,3 +1450,58 @@ html.lenis, html.lenis body { height: auto; }
 .xp__cv { display: inline-block; margin-top: 22px; font-size: 11px; color: var(--soft); border-bottom: 1px solid var(--line); padding-bottom: 2px; transition: color .2s, border-color .2s; }
 .xp__cv:hover { color: var(--ink); border-color: var(--ink); }
 @media (max-width: 720px) { .xp__bar b { display: block; font-size: 8.5px; } }
+
+/* ---------- Experience: story paragraph instead of bullets ---------- */
+.xp__desc {
+  max-width: 62ch;
+  padding-bottom: 4px;
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--soft);
+  opacity: 0;
+  transform: translateY(8px);
+  filter: blur(3px);
+  transition: opacity .4s ease .05s, transform .5s var(--ease) .05s, filter .4s ease .05s;
+}
+.xp__desc strong { color: var(--ink); font-weight: 600; }
+.xp__item.is-open .xp__desc { opacity: 1; transform: none; filter: none; }
+.xp__inner { padding-top: 2px; }
+
+/* ---------- Footer spotlight: follows the cursor, drifts when idle ---------- */
+@property --sx { syntax: "<length-percentage>"; inherits: true; initial-value: 50%; }
+@property --sy { syntax: "<length-percentage>"; inherits: true; initial-value: 20%; }
+.foot__spot {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(560px circle at var(--sx) var(--sy), rgba(255,255,255,.10), rgba(255,255,255,.03) 40%, transparent 65%);
+  animation: spotDrift 14s ease-in-out infinite alternate;
+}
+/* the dot grid lights up inside the beam */
+.foot__spot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,.34) 1px, transparent 1.2px);
+  background-size: 16px 16px;
+  -webkit-mask-image: radial-gradient(240px circle at var(--sx) var(--sy), #000, transparent 75%);
+  mask-image: radial-gradient(240px circle at var(--sx) var(--sy), #000, transparent 75%);
+}
+@keyframes spotDrift {
+  0%   { --sx: 28%; --sy: 18%; }
+  50%  { --sx: 72%; --sy: 34%; }
+  100% { --sx: 46%; --sy: 62%; }
+}
+.foot.is-tracking .foot__spot { animation: none; }
+@media (prefers-reduced-motion: reduce) { .foot__spot { animation: none; } }
+
+/* ---------- Keypad LEDs: green blinks like an activity light ---------- */
+.pad__leds i.is-on { animation: ledBlink 2.4s steps(1, end) infinite; }
+@keyframes ledBlink {
+  0%, 62%  { background: #22c55e; box-shadow: 0 0 6px 1px rgba(34,197,94,.75); }
+  64%, 70% { background: #0f5a2a; box-shadow: none; }
+  72%, 80% { background: #22c55e; box-shadow: 0 0 6px 1px rgba(34,197,94,.75); }
+  82%, 100%{ background: #0f5a2a; box-shadow: none; }
+}
+/* second LED flashes on every key press */
+.pad__leds i.is-flash { background: #fff; box-shadow: 0 0 6px 1px rgba(255,255,255,.8); }
