@@ -1280,7 +1280,7 @@ html.lenis, html.lenis body { height: auto; }
 }
 .xp__years {
   display: grid;
-  grid-template-columns: repeat(9, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   font-size: 9.5px;
   color: var(--muted);
   padding-bottom: 8px;
@@ -1292,15 +1292,15 @@ html.lenis, html.lenis body { height: auto; }
   display: grid;
   gap: 6px;
   padding-top: 10px;
-  background-image: repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px calc(100% / 9));
+  background-image: repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px 25%);
 }
 .xp__bar {
   position: relative;
   display: flex;
   align-items: center;
   height: 20px;
-  margin-left: calc(var(--from) / 9 * 100%);
-  width: calc((var(--to) - var(--from)) / 9 * 100%);
+  margin-left: calc(var(--from) / var(--span, 48) * 100%);
+  width: calc((var(--to) - var(--from)) / var(--span, 48) * 100%);
   padding: 0 8px;
   overflow: hidden;
   border-radius: 6px;
@@ -1441,6 +1441,12 @@ html.lenis, html.lenis body { height: auto; }
   .xp__toggle { grid-column: 3; grid-row: 1 / span 2; }
   .xp__inner { padding-left: 0; padding-right: 0; }
   .xp__bar b { display: none; }
-  .xp__years span:nth-child(odd) { visibility: visible; }
-  .xp__years span:nth-child(even) { color: transparent; }
 }
+
+/* company logos in the experience tiles */
+.xp__logo svg { width: 20px; height: 20px; }
+.xp__logo.is-mi { background: #c9282d; border-color: #9a1a1e; box-shadow: inset 0 1px 1px rgba(255,255,255,.25), inset 0 -2px 0 rgba(0,0,0,.18); }
+.xp__logo.is-mi svg { width: 17px; height: 19px; }
+.xp__cv { display: inline-block; margin-top: 22px; font-size: 11px; color: var(--soft); border-bottom: 1px solid var(--line); padding-bottom: 2px; transition: color .2s, border-color .2s; }
+.xp__cv:hover { color: var(--ink); border-color: var(--ink); }
+@media (max-width: 720px) { .xp__bar b { display: block; font-size: 8.5px; } }

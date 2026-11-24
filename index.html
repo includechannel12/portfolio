@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=28" />
+  <link rel="stylesheet" href="style.css?v=29" />
 </head>
 <body>
   <!-- Intro layer: lo-fi skeleton of the page, resolved into the real thing -->
@@ -214,93 +214,75 @@
         <header class="xp__head">
           <p class="xp__eyebrow mono">Fig 02 — Track record</p>
           <h2 id="xp-title">Experience</h2>
-          <p class="xp__lede">Four years designing products with teams in Bandung, Yogyakarta and the Netherlands, now independently for clients worldwide.</p>
+          <p class="xp__lede">Nearly four years designing SaaS platforms, webshops and company websites for clients in Europe, the US and Southeast Asia, across agency, in-house and freelance work.</p>
           <dl class="xp__facts mono">
-            <div><dt>Years</dt><dd>4+</dd></div>
-            <div><dt>Teams</dt><dd>3</dd></div>
-            <div><dt>Based</dt><dd>Remote · UTC+7</dd></div>
+            <div><dt>Projects</dt><dd>20+</dd></div>
+            <div><dt>On time</dt><dd>100%</dd></div>
+            <div><dt>Clients</dt><dd>EU · US · SEA</dd></div>
           </dl>
+          <a class="xp__cv mono" href="https://www.linkedin.com/in/andreanfarhantama/" target="_blank" rel="noopener">Full history on LinkedIn ↗</a>
         </header>
 
         <div class="xp__body">
-          <!-- mini timeline: how the roles overlap; hover links to the list -->
-          <div class="xp__chart" aria-hidden="true">
-            <div class="xp__years mono"><span>2018</span><span>2019</span><span>2020</span><span>2021</span><span>2022</span><span>2023</span><span>2024</span><span>2025</span><span>2026</span></div>
+          <!-- mini timeline, Jan 2023 → Dec 2026 in months; running bars are extended to today by script.js -->
+          <div class="xp__chart" style="--span:48" aria-hidden="true">
+            <div class="xp__years mono"><span>2023</span><span>2024</span><span>2025</span><span>2026</span></div>
             <div class="xp__bars">
-              <i class="xp__bar is-now" data-xp="freelance" style="--from:4;--to:8.9"><b>Freelance</b></i>
-              <i class="xp__bar" data-xp="madeindonesia" style="--from:5;--to:7"><b>MadeIndonesia</b></i>
-              <i class="xp__bar" data-xp="berkatsoft" style="--from:4;--to:5.9"><b>BerkatSoft</b></i>
-              <i class="xp__bar is-edu" data-xp="uad" style="--from:0;--to:4"><b>UAD</b></i>
+              <i class="xp__bar is-now" data-xp="madeindonesia" data-start="2024-03" style="--from:14;--to:47"><b>MadeIndonesia</b></i>
+              <i class="xp__bar is-now" data-xp="upwork" data-start="2024-11" style="--from:22;--to:47"><b>Upwork</b></i>
+              <i class="xp__bar" data-xp="cakra" style="--from:2;--to:13"><b>Cakra</b></i>
             </div>
           </div>
 
           <ol class="xp__list">
-            <li class="xp__item is-open" data-xp="freelance">
+            <li class="xp__item is-open" data-xp="madeindonesia">
               <button class="xp__row" type="button" aria-expanded="true" aria-controls="xp-p1">
-                <span class="xp__logo is-brand mono" aria-hidden="true">UP</span>
-                <span class="xp__main"><b class="xp__role">UI/UX Designer</b><span class="xp__co">Freelance · Upwork <em class="xp__now mono">Now</em></span></span>
+                <span class="xp__logo is-mi" aria-hidden="true"><svg viewBox="0 0 26 28"><path fill="#fff" fill-rule="evenodd" d="M1.81927 2.6624C1.81927 2.28671 1.93647 2.16854 2.32132 2.16854H3.96566V25.8297H1.81927V2.6624ZM7.44151 25.8297H5.29512V2.17736C7.74413 2.17736 7.26657 1.9657 8.07125 3.2127L13.2964 10.774C13.6462 11.2573 13.8562 11.5395 14.1833 12.044L21.1577 22.0058V2.17736H23.3164V25.8297C20.3058 25.8297 21.5548 26.253 18.7787 22.408C18.4288 21.9141 18.2189 21.6319 17.8918 21.138L7.96629 6.802C7.78087 6.56742 7.61643 6.36811 7.44151 6.16704V25.8297ZM0 1.00444V27.5H25.1356V0.5H0.470561C0.117203 0.5 0 0.61641 0 1.00444Z"/></svg></span>
+                <span class="xp__main"><b class="xp__role">UI/UX Designer</b><span class="xp__co">MadeIndonesia · Yogyakarta <em class="xp__now mono">Now</em></span></span>
                 <span class="xp__lead" aria-hidden="true"></span>
-                <span class="xp__when mono">2022 — Present<small>4 yrs</small></span>
+                <span class="xp__when mono">Mar 2024 — Present<small data-since="2024-03">2 yrs 9 mos</small></span>
                 <span class="xp__toggle" aria-hidden="true"></span>
               </button>
               <div class="xp__panel" id="xp-p1"><div class="xp__inner">
                 <ul class="xp__points">
-                  <li>Design and ship landing pages, SaaS dashboards and Shopify stores for founders, e-commerce brands and agencies.</li>
-                  <li>Ongoing contracts: an AI / SaaS book-publishing platform landing page, and Figma to Elementor Pro builds.</li>
-                  <li>Redesigned a Shopify store's UI and product pages over seven months (Dec 2024 – Jul 2025).</li>
-                  <li>100% Job Success and a 5.0 client rating, with an AI-assisted workflow (Claude + Cursor) from wireframe to live page.</li>
+                  <li>Websites for European clients, mostly in the Netherlands: SaaS platforms, webshops and company profiles.</li>
+                  <li>10+ projects on 1–2 week timelines, all delivered on time, with PageSpeed scores of 92+.</li>
                 </ul>
-                <div class="xp__chips mono"><span>Figma</span><span>Framer</span><span>Webflow</span><span>Shopify</span><span>Claude</span><span>Cursor</span></div>
+                <div class="xp__chips mono"><span>Figma</span><span>WordPress</span><span>Webshops</span><span>Design handoff</span></div>
               </div></div>
             </li>
 
-            <li class="xp__item" data-xp="madeindonesia">
+            <li class="xp__item" data-xp="upwork">
               <button class="xp__row" type="button" aria-expanded="false" aria-controls="xp-p2">
-                <span class="xp__logo mono" aria-hidden="true">MI</span>
-                <span class="xp__main"><b class="xp__role">UI/UX Designer</b><span class="xp__co">MadeIndonesia</span></span>
+                <span class="xp__logo is-brand" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="#fff" d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-2.539 0-4.51 1.649-5.31 4.366-1.22-1.834-2.148-4.036-2.687-5.892H7.828v7.112c-.002 1.406-1.141 2.546-2.547 2.548-1.405-.002-2.543-1.143-2.545-2.548V3.492H0v7.112c0 2.914 2.37 5.303 5.281 5.303 2.913 0 5.283-2.389 5.283-5.303v-1.19c.529 1.107 1.182 2.229 1.974 3.221l-1.673 7.873h2.797l1.213-5.71c1.063.679 2.285 1.109 3.686 1.109 3 0 5.439-2.452 5.439-5.45 0-3-2.439-5.439-5.439-5.439z"/></svg></span>
+                <span class="xp__main"><b class="xp__role">Freelance UI/UX Designer</b><span class="xp__co">Upwork · Remote <em class="xp__now mono">Now</em></span></span>
                 <span class="xp__lead" aria-hidden="true"></span>
-                <span class="xp__when mono">2023 — 2024<small>1 yr</small></span>
+                <span class="xp__when mono">Nov 2024 — Present<small data-since="2024-11">2 yrs 1 mo</small></span>
                 <span class="xp__toggle" aria-hidden="true"></span>
               </button>
               <div class="xp__panel" id="xp-p2"><div class="xp__inner">
                 <ul class="xp__points">
-                  <li>Redesigned the platform of Intelligence Group, a Dutch labour-market data company: 20+ pages designed for WordPress and Elementor.</li>
-                  <li>Owned the design handoff to developers, from landing page to company-policy pages.</li>
+                  <li>10+ projects for startups and agencies across SaaS, e-commerce and company websites in Europe, the US and Southeast Asia.</li>
+                  <li>Retained monthly by two publishing clients, with a 100% Job Success Score.</li>
                 </ul>
-                <div class="xp__chips mono"><span>Figma</span><span>WordPress</span><span>Elementor</span><span>Design handoff</span></div>
+                <div class="xp__chips mono"><span>Figma</span><span>Framer</span><span>Claude</span><span>Cursor</span></div>
               </div></div>
             </li>
 
-            <li class="xp__item" data-xp="berkatsoft">
+            <li class="xp__item" data-xp="cakra">
               <button class="xp__row" type="button" aria-expanded="false" aria-controls="xp-p3">
-                <span class="xp__logo mono" aria-hidden="true">BS</span>
-                <span class="xp__main"><b class="xp__role">UI/UX Designer</b><span class="xp__co">BerkatSoft · Bandung</span></span>
+                <span class="xp__logo mono" aria-hidden="true">TCI</span>
+                <span class="xp__main"><b class="xp__role">UI/UX Designer</b><span class="xp__co">PT. Teknologi Cakra Internasional · Bandung</span></span>
                 <span class="xp__lead" aria-hidden="true"></span>
-                <span class="xp__when mono">2022 — 2023<small>1 yr</small></span>
+                <span class="xp__when mono">Mar 2023 — Jan 2024<small>11 mos</small></span>
                 <span class="xp__toggle" aria-hidden="true"></span>
               </button>
               <div class="xp__panel" id="xp-p3"><div class="xp__inner">
                 <ul class="xp__points">
-                  <li>Designed Nextflow, the team's internal product-management tool for tasks, timelines and resources, with a WhatsApp chatbot integration.</li>
-                  <li>Rebuilt the HRIS mobile app for BBWS Citarum, improving everyday HR operations and data privacy.</li>
+                  <li>Started a scalable design system based on Untitled UI for the product team.</li>
+                  <li>Designed the Arthology website, a branding consultancy sub-business, from wireframes to high fidelity.</li>
                 </ul>
-                <div class="xp__chips mono"><span>Figma</span><span>Dashboards</span><span>Mobile apps</span><span>Prototyping</span></div>
-              </div></div>
-            </li>
-
-            <li class="xp__item is-edu" data-xp="uad">
-              <button class="xp__row" type="button" aria-expanded="false" aria-controls="xp-p4">
-                <span class="xp__logo mono" aria-hidden="true">UAD</span>
-                <span class="xp__main"><b class="xp__role">B.CompSc, Informatics</b><span class="xp__co">Universitas Ahmad Dahlan · Yogyakarta</span></span>
-                <span class="xp__lead" aria-hidden="true"></span>
-                <span class="xp__when mono">2018 — 2022<small>4 yrs</small></span>
-                <span class="xp__toggle" aria-hidden="true"></span>
-              </button>
-              <div class="xp__panel" id="xp-p4"><div class="xp__inner">
-                <ul class="xp__points">
-                  <li>Bachelor of Computer Science in Informatics, the engineering side that lets me design things that can actually be built.</li>
-                  <li>Later certified in User Experience Design Fundamentals (IBM, 2025).</li>
-                </ul>
+                <div class="xp__chips mono"><span>Figma</span><span>Untitled UI</span><span>Design system</span></div>
               </div></div>
             </li>
           </ol>
@@ -415,6 +397,6 @@
   <div class="cursor mono" aria-hidden="true"><span>View ↗</span></div>
 
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-  <script src="script.js?v=18"></script>
+  <script src="script.js?v=19"></script>
 </body>
 </html>

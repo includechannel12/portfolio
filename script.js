@@ -503,7 +503,19 @@ keys.forEach((k) => {
   k.addEventListener("keyup", (e) => { if (e.key === "Enter" || e.key === " ") keySound("up", k); });
 });
 
-/* 5a. Experience: accordion rows + highlight the matching timeline bar */
+/* 5a. Experience: live durations for current roles, running bars reach today */
+(function xpDates() {
+  const now = new Date();
+  const monthsSince = (ym) => { const [y, m] = ym.split("-").map(Number); return (now.getFullYear() - y) * 12 + (now.getMonth() + 1 - m) + 1; };
+  document.querySelectorAll("[data-since]").forEach((el) => {
+    const n = monthsSince(el.dataset.since), y = Math.floor(n / 12), mo = n % 12;
+    el.textContent = [y && `${y} yr${y > 1 ? "s" : ""}`, mo && `${mo} mo${mo > 1 ? "s" : ""}`].filter(Boolean).join(" ");
+  });
+  const nowIdx = (now.getFullYear() - 2023) * 12 + now.getMonth() + now.getDate() / 31; // months since Jan 2023
+  document.querySelectorAll(".xp__bar.is-now").forEach((b) => b.style.setProperty("--to", Math.min(48, nowIdx).toFixed(2)));
+})();
+
+/* 5a'. Experience: accordion rows + highlight the matching timeline bar */
 const xpChart = document.querySelector(".xp__chart");
 document.querySelectorAll(".xp__item").forEach((item) => {
   const row = item.querySelector(".xp__row");
