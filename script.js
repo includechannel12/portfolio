@@ -432,6 +432,23 @@ if (finePointer && cursor) {
   });
 }
 
+/* 4b. Work grid: video thumbnails play only while on screen;
+   with reduced motion they stay on the poster and play on hover */
+const tileVideos = [...document.querySelectorAll(".tile__media")];
+const playVid = (v) => { v.preload = "auto"; v.play().catch(() => {}); };
+if (reduced) {
+  tileVideos.forEach((v) => {
+    const tile = v.closest(".tile");
+    tile.addEventListener("mouseenter", () => playVid(v));
+    tile.addEventListener("mouseleave", () => v.pause());
+  });
+} else if ("IntersectionObserver" in window) {
+  const vidIO = new IntersectionObserver((entries) => {
+    entries.forEach(({ target, isIntersecting }) => (isIntersecting ? playVid(target) : target.pause()));
+  }, { rootMargin: "200px 0px" });
+  tileVideos.forEach((v) => vidIO.observe(v));
+}
+
 /* 5. Footer keys: real keyboard shortcuts E / U / L / T ---------- */
 const keyMap = { e: 0, u: 1, l: 2, t: 3 };
 const keys = [...document.querySelectorAll(".key")];
@@ -777,7 +794,7 @@ async function runIntro() {
     [".review", "text", ".review__top, blockquote p, .review__by"],
     [".side--right", "box", "ILLUSTRATION"],
     [".work__head", "text", "h2, p, .work__count"],
-    [".tile", "box", "IMAGE · 4:3"],
+    [".tile", "box", "VIDEO · 16:10"],
     [".foot", "none"],
   ];
 
