@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.andrean.me" }],
+      "destination": "https://andrean.me/:path*",
+      "permanent": true
+    }
+  ]
+}
